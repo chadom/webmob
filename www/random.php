@@ -8,7 +8,7 @@ function afficheGPS(){
 	my_gps.init();
 	var position=my_gps.get();
 	var texte=document.getElementById("montexte");
-	texte.innerHTML= "Latitude=" + position.coords.latitude + "<br/>" + "Longitude=" + position.coords.longitude;
+	texte.innerHTML = "Latitude="+position.coords.latitude + "<br/>" + "Longitude=" + position.coords.longitude;
 }
 </script>
 <title>Al&eacute;atoire </title>
