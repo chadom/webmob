@@ -6,7 +6,6 @@ body {
 	background-color:  #aaa;
 	padding: 0;
 	margin : 0;
-	
 }
 
 a {
@@ -26,7 +25,7 @@ a {
 .search {
 	background-image: none;
 }
-#header,#menu,#footer{
+#header,#menu,#footer,#video{
 	display : block;
 	width: 980px;
 	margin: 0 auto;
@@ -34,6 +33,8 @@ a {
 
 #header img {
 	float: left;
+	transform:rotate(30deg);
+	-webkit-transform: rotate(30deg);
 }
 
 #header .titre {
@@ -48,15 +49,21 @@ a {
 
 #header h1{
 	color: #123456;
+	animation: monanim 3s infinite;
+	-webkit-animation: monanim 3s infinite;
 }
 
 #header h2{
 	color: #ABCABC;
 	background-color: #333;
+	animation: monanim_inverse 3s infinite;
+	-webkit-animation: monanim_inverse 3s infinite;
+	
 }
 
 #menu {
 	color : gray;
+	text-shadow: 5px 0px 5px #CBACBA, -5px 0px 5px #BACBAC;
 }
 
 #menu ul {
@@ -71,7 +78,9 @@ a {
 }
 
 #menu li:hover {
-	background-color: white;	
+	background-color: white;
+	transform: rotate(30deg);
+	-webkit-transform : rotate(30deg);
 }
 
 #menu li a {
@@ -79,6 +88,11 @@ a {
 	width : 100%;
 	text-align: center;
 	display: inline-block;
+	
+}
+
+#menu li a:hover {
+	text-shadow: 5px 0px 50px #CBACBA, -5px 0px 50px #BACBAC;
 }
 
 div#contenu {
@@ -110,4 +124,39 @@ div#contenu {
 #footer li:hover {
 	color : yellow;
 	background-color: rgba(255,165,140,0.75);		
+}
+
+@keyframes monanim
+{
+0%	{color: red;}
+50%	{color: yellow;}
+100%	{color: red;}
+}
+
+@-webkit-keyframes monanim /* Safari and Chrome */
+{
+0%	{color: red;}
+50%	{color: yellow;}
+100%	{color: red;}
+}
+
+@keyframes monanim_inverse
+{
+0%	{color: yellow;}
+50%	{color: red;}
+100%	{color: yellow;}
+}
+
+@-webkit-keyframes monanim_inverse /* Safari and Chrome */
+{
+0%	{color: yellow;}
+50%	{color: red;}
+100%	{color: yellow;}
+}
+
+label
+{
+    display: block;
+    width: 150px;
+    float: left;
 }
