@@ -23,7 +23,7 @@ function stocker(){
 			<h1>Votre recherche</h1>
 		</div>
 	</div>
-	<div class="wrapper">
+	<div class="wrapper" id="aucentre">
 	<form target="_self" method="get">
 		<!-- Auteur, Nationalité, Titre, Année, Prix, Disponibilité -->
 		<label for="auteur">Auteur :</label><input type="text" name="auteur"

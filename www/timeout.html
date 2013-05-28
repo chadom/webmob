@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Timeout et gestion de pop-up</title>
+<script type="text/javascript">
+function decompte_pop_up(delai){
+	if ( delai == 0 ){
+		window.open("popup.html","popup","width=300,height=200");
+	} else {
+		delai--;
+		console.log(delai);
+		var x = document.getElementById("nombre");
+		x.innerHTML = "Ouverture d'une pop-up dans " + delai + " secondes";
+		setTimeout("decompte_pop_up("+delai+")",1000);
+	}
+}
+function retour_fen(){
+	alert("Ouvert par la pop-up");
+}
+</script>
+</head>
+<body onload="decompte_pop_up(10)">
+<div id="nombre">Ouverture d'une pop-up dans 10 secondes</div> 
+</body>
+</html>

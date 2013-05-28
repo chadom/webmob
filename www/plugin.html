@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="jss/style_interne.css" />
+<title>Liste des plugins</title>
+<script src="jss/style_color.js"></script>
+<script type="text/javascript">
+function liste_plugin(){
+	var txt = "<div class=\"titre\">Plugin(s) PDF détecté(s) </div>";
+	var o = 0;
+	var x = document.getElementById("montexte");
+	x.innerHTML = "<div class=\"titre\">Liste des plugins </div>";
+	for ( var i=0; i< this.navigator.plugins.length ; i++ ){
+		x.innerHTML += "<div style=\"background-color:" + getCouleur(i) + "\">" + this.navigator.plugins[i].name + " (" + this.navigator.plugins[i].filename + ") : " + this.navigator.plugins[i].description + "</div>";
+		if ( /pdf/i.test(this.navigator.plugins[i].filename) ){
+			txt += "<div style=\"background-color:" + getCouleur(i) + "\">" + this.navigator.plugins[i].name + " (" + this.navigator.plugins[i].filename + ") : " + this.navigator.plugins[i].description + "</div>";		
+			o = 1;
+		}
+	}
+	if ( o == 0 ){
+		txt += "Aucun";
+	}
+	x.innerHTML += txt;
+	
+}
+</script>
+</head>
+<body onload="liste_plugin()">
+<div id="montexte"></div>
+</body>
+</html>

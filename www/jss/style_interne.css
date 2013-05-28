@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+body {
+	font-family: Verdana;
+	font-size: 0.9em;
+}
+
+.titre{
+	background-color : #DF7708;
+	color : white;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	padding-left : 3px;
+	font-weight: bold;
+}
+

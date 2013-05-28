@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Mon pop-up</title>
+<script type="text/javascript">
+function decompte_pop_up(delai){
+	if ( delai == 0 ){
+		window.close();
+	} else {
+		delai--;
+		console.log(delai);
+		var x = document.getElementById("nombre");
+		x.innerHTML = "Fermeture dans " + delai + " secondes";
+		setTimeout("decompte_pop_up("+delai+")",1000);
+	}
+}
+
+</script>
+</head>
+<body onload="decompte_pop_up(5)" onunload="this.opener.retour_fen()">
+<div id="montexte">
+Ceci est ma pop-up.
+</div><div id="nombre">Fermeture dans 5 secondes</div> 
+</body>
+</html>

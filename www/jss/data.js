@@ -5,56 +5,63 @@ my_data.Set=function(cle,val){
 		localStorage.setItem(cle, val);
 	}else
 	{
-		alert ("Votre navigateur ne supporte pas le webstorage")
+		alert ("Votre navigateur ne supporte pas le webstorage");
 	}
-}
+};
 my_data.Get=function(cle){
 	if(typeof(localStorage)!=="undefined"){
 		return(localStorage.getItem(cle));
 	}else
 	{
-		alert ("Votre navigateur ne supporte pas le webstorage")
+		alert ("Votre navigateur ne supporte pas le webstorage");
 	}
-}
+};
 my_data.Clear=function(){
 	if(typeof(localStorage)!=="undefined"){
 		return(localStorage.clear());
 	}else
 	{
-		alert ("Votre navigateur ne supporte pas le webstorage")
+		alert ("Votre navigateur ne supporte pas le webstorage");
 	}
-}
+};
 my_data.Reset=function(cle){
 	if(typeof(localStorage)!=="undefined"){
 		localStorage.removeItem(cle);
 	}else
 	{
-		alert ("Votre navigateur ne supporte pas le webstorage")
+		alert ("Votre navigateur ne supporte pas le webstorage");
 	}
-}
+};
 
 var my_gps = new Object();
 
-my_gps.init=function(){
+my_gps.init=function(callback){
 	if (navigator.geolocation)
-	  {
-	  navigator.geolocation.getCurrentPosition(my_gps._set, my_gps._onError);
-	  }
-	else{alert("Geolocation is not supported by this browser.");}
-	}
-}
+	 {
+		 console.log("debut");
+		navigator.geolocation.getCurrentPosition(callback, my_gps._onError);
+		console.log("fin");
+	 }
+	else{
+		alert("Geolocation is not supported by this browser.");
+	};
+};
 
 my_gps._set=function(position){
-	my_data.Set("positionGPS",position);
-}
+	my_data.Set("GPSlatitude",position.coords.latitude);
+	my_data.Set("GPSlongitude",position.coords.longitude);
+};
 
-my_gps.get=function(){
-	return(my_data.Get("positionGPS");
-}
+my_gps.getlatitude=function(){
+	return(my_data.Get("GPSlatitude"));
+};
+my_gps.getlongitude=function(){
+	return(my_data.Get("GPSlongitude"));
+};
 
 my_gps.update=function(){
 	my_gps.init();
-}
+};
 
 my_gps._onError=function(error){
 	switch(error.code) 
@@ -71,6 +78,8 @@ my_gps._onError=function(error){
     case error.UNKNOWN_ERROR:
     	alert("An unknown error occurred.");
       break;
-    }
+    };
   
-}
+};
+
+

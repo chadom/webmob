@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Liste des frais de port par pays</title>
+<script type="text/javascript">
+
+var tableau_pays = new Array(["France",10], ["Belgique",12], ["Allemagne",11], ["Italie",13],["Pays-Bas",14]);
+var couleur_alternee = new Array("#FAE2BA","#FFFFFF");
+
+var tableau_pays_html = "<table><tr bgcolor=\"#DF7708\" style=\"color:white\"><td>Pays</td><td>Frais de port</td>";
+var tableau_box = "<select name=\"pays\">";
+
+for(i=0; i< tableau_pays.length ; i++){
+	tableau_pays_html += "<tr bgcolor=\"" + couleur_alternee[i%2] + "\">";
+	tableau_pays_html += "<td>" + tableau_pays[i][0] + "</td><td>" +  tableau_pays[i][1] + "</td></tr>";
+	tableau_box += "<option style=\"background-color:" + couleur_alternee[i%2] + "\" name=\"" + tableau_pays[i][0] + "\" value=\"" + tableau_pays[i][1] + "\">" + tableau_pays[i][0] + "</option>";
+}
+tableau_pays_html += "</table>";
+
+function prix_ttc(){
+	var x = document.getElementById("resultat");
+	var valeur_ht= document.getElementById("montant_ht").value;
+	var valeur_tva = document.getElementById("taux_tva").value;
+	var total = parseFloat(valeur_ht) + (parseFloat(valeur_ht)*parseFloat(valeur_tva))/100;
+	x.innerHTML = "Montant TTC : " + total;	
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">document.write(tableau_pays_html);</script>
+<form name="select_pays">
+Choisissez votre pays : 
+<script type="text/javascript">document.write(tableau_box);</script>
+<input name="Bouton" type="submit"> 
+</form>
+<form>
+Calcul du montant TTC <br />
+Veuillez saisir le montant HT et sélectionner le taux TVA : 
+<input id="montant_ht" name="montant_ht" type="text" />
+<select id="taux_tva" name="taux_tva">
+<option value="19.6">Taux normal : 19.6% </option>
+<option value="5.5">Taux réduit : 5.5% </option>
+<option value="7">Taux interm&eacute;diaire : 7% </option>
+</select>
+<input name="calcul" type="button" onclick="prix_ttc()" value="Calculer">
+</form>
+<div id="resultat"></div>
+</body>
+</html>
