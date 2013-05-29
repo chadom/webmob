@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="jss/style_interne.css" />
+<title>Drag and drop</title>
+</head>
+<head>
+<style type="text/css">
+#maconsole {position:absolute;left:10px;top:500px;width:256px;height:100px;padding:10px;border:1px solid #aaaaaa;background-color:#F1F1F1;};
+</style>
+<script>
+
+var isdrag = false;
+var x=0;
+var y=0;
+var tx, ty;
+var dobj;
+
+function movemouse(ev) {
+	
+	if (isdrag) {
+		var lex, ley;
+		if (!ev) { ev=event; }
+		lex = tx + ev.clientX - x;
+		console.log(x);
+		ley = ty + ev.clientY - y;
+		if (lex > 0) {
+			dobj.style.left = lex + "px";
+		}
+		if (ley > 0) {
+			dobj.style.top = ley+ "px";
+		}
+		dobj.style.zIndex="2";
+		var mondoc=document.getElementById("maconsole");
+		mondoc.innerHTML = "Mouse DOWN : left=" + lex + " top=" + ley;
+		return false;
+	}
+}
+
+function selectmouse(ev) {
+	if (ev)	{
+		var fobj = ev.target;
+	} else {
+		var fobj = event.srcElement;
+		ev = event;
+	}
+	x = ev.clientX;
+	y = ev.clientY;
+	if (/div/i.test(fobj.parentNode.id)){
+		fobj = fobj.parentNode;
+	}
+	if (/div/i.test(fobj.id)){
+		isdrag = true;
+		dobj = fobj;
+		tx = parseInt(dobj.style.left);
+		ty = parseInt(dobj.style.top);
+		document.onmousemove = movemouse;
+		return false
+	}
+}
+
+document.onmousedown = selectmouse;
+document.onmouseup = function(){
+	isdrag = false;
+	dobj.style.zIndex="0";
+	var mondoc=document.getElementById("maconsole");
+	mondoc.innerHTML = "Mouse UP!";
+};
+
+</script>
+</head>
+<body>
+
+<p>Déplacer les images !</p>
+
+<div id="div1" style="position:absolute;left:10px;top:50px;width:64px;height:64px;" ><img src="img/bug_red.png" style="width:64px;height:64px;" id="monimage" /></div>
+<div id="div2" style="position:absolute;left:266px;top:50px;width:128px;height:128px;" ><img src="img/bug_yellow.png" id="monimage2" style="width:128px;height:128px;" /></div>
+<div id="div3" style="position:absolute;left:522px;top:50px;width:256px;height:256px;" ><img src="img/bug_green.png" id="monimage3" /></div>
+<div id="maconsole"></div>
+
+</body>
+</html>
